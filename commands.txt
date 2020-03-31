@@ -1,0 +1,29 @@
+MNIST
+
+#Teacher Training
+python main.py --model_type teacher --checkpoint_dir teachercpt --num_steps 5000 --temperature 2
+
+#Student Standalone Training
+python main.py --model_type student --checkpoint_dir studentcpt --num_steps 5000
+
+#Student with Teacher Training
+python main.py --model_type student --checkpoint_dir studentcpt --load_teacher_from_checkpoint true --load_teacher_checkpoint_dir teachercpt --num_steps 5000 --temperature 2
+
+#RSA Training
+python main_RSA.py --model_type student --checkpoint_dir studentcpt_RSA --num_steps 5000
+
+
+
+CIFAR-10
+
+#Teacher Training
+python main_CIFAR10_VGG16_without_RSA.py --model_type teacher --checkpoint_dir teachercpt  --temperature 2
+
+#Student Training
+python main_CIFAR10_VGG16_without_RSA.py --model_type student --checkpoint_dir studentcpt 
+
+#Student with Teacher Training
+python main_CIFAR10_VGG16_without_RSA.py --model_type student --checkpoint_dir studentcpt --load_teacher_from_checkpoint true --load_teacher_checkpoint_dir teachercpt  --temperature 2
+
+#RSA Training
+python main_CIFAR10_VGG16_RSA.py --model_type student --checkpoint_dir studentcpt_RSA 
